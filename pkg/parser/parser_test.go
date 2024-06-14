@@ -7,7 +7,7 @@ import (
 )
 
 func TestParseHosts(t *testing.T) {
-	hosts, err := ParseHosts("./testdata/hosts.csv")
+	hosts, err := ParseHosts("./testdata/1.csv")
 	require.NoError(t, err)
 	require.Len(t, hosts, 2)
 	for i, host := range hosts {
@@ -21,4 +21,8 @@ func TestParseHosts(t *testing.T) {
 			require.Equal(t, "10.1.0.2", host.ManagementIP)
 		}
 	}
+
+	hosts, err = ParseHosts("./testdata/2.csv")
+	require.NoError(t, err)
+	require.Len(t, hosts, 0)
 }
