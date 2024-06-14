@@ -1,4 +1,4 @@
-package ipmitool
+package client
 
 import (
 	"fmt"
@@ -69,6 +69,7 @@ func (p *Power) Cycle() error {
 }
 
 // Status fetches the current power state of the ipmi server
+// Status returns the current power state of the IPMI device.
 func (p *Power) Status() (PowerState, error) {
 	params := p.cl.getBaseParam()
 	params = append(params, "power", "status")

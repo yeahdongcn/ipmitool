@@ -1,4 +1,4 @@
-package ipmitool
+package client
 
 import (
 	"bytes"
@@ -43,6 +43,8 @@ func (cl *Client) getBaseParam() []string {
 	params := []string{
 		"-H",
 		cl.addr,
+		"-I",
+		"lanplus",
 	}
 
 	if cl.user != "" {
@@ -66,7 +68,7 @@ func (cl *Client) execute(args []string) (string, error) {
 
 	err := cmd.Run()
 	if err != nil {
-		return "", fmt.Errorf("Failed to execute ipmitool command: %w : %s", err, errBuf.String())
+		return "", fmt.Errorf("failed to execute ipmitool command: %w : %s", err, errBuf.String())
 	}
 
 	return outBuf.String(), nil
